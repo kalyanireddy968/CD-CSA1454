@@ -1,15 +1,16 @@
 %{
 #include<stdio.h>
+int n=0;
 %}
 %%
-[0-9]+|[0-9]*\.[0-9]+ { printf("\n%s is Digit", yytext);}
-.+ {printf("\n%s is not a Digit", yytext);}
+"/"[a-zA-Z0-9\n\t]+"/" {n++;}
+"//"[a-zA-Z0-9\n\t]+"//" {n++;}
 %%
-
-int yywrap(){}
-
+int yywrap()
+{}
 int main()
 {
-printf("Enter:");
+printf("enter:");
 yylex();
+printf("no of comment lines:%d",n);
 }
