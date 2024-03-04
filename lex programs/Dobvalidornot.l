@@ -1,15 +1,12 @@
 %{
-#include<stdio.h>
 %}
 %%
-[0-9]+|[0-9]*\.[0-9]+ { printf("\n%s is Digit", yytext);}
-.+ {printf("\n%s is not a Digit", yytext);}
+[0-9][0-9]\/[0-1][0-9]\/[1-2][0-9]{3} {printf("valid");}
+.+ {printf("invalid");}
 %%
-
 int yywrap(){}
-
 int main()
 {
-printf("Enter:");
+printf("enter dob");
 yylex();
 }
