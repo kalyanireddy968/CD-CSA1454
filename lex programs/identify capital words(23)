@@ -3,14 +3,17 @@
 %}
 
 %%
-
-[A-Z]+    { printf("Capital word: %s\n", yytext); }
-
-.         ;
-
+[A-Z]+    printf("Capital word: %s\n", yytext);
+.|\n           ; 
 %%
-
-int main() {
+int yywrap(void) {
+    return 1;
+}
+int main(void) {
+    char input[1000];
+    printf("enter text:");
+    scanf("%[^\n]",input);
+    yy_scan_string(input);
     yylex();
     return 0;
 }
