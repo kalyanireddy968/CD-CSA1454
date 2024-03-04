@@ -1,0 +1,13 @@
+%{
+#include <stdio.h>
+%}
+%%
+[aeiouAEIOU][a-zA-Z]*   { printf("Valid string: %s\n", yytext); }
+.|\n                    {printf("invalid string:");}
+%%
+int yywrap() {}
+int main() {
+    printf("Enter a string: \n");
+    yylex();
+    return 0;
+}
