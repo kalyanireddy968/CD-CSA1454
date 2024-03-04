@@ -3,23 +3,26 @@
 int positive_count = 0;
 int negative_count = 0;
 %}
+%%
+[+-]?[0-9]+         { 
+                        int num = atoi(yytext);
+                        if (num > 0)
+                            positive_count++;
+                        else if (num < 0)
+                            negative_count++;
+                    }
+
+.|\n                ;
 
 %%
-[+-]?[0-9]+      { 
-                     int num = atoi(yytext);
-                     if (num > 0) {
-                         positive_count++;
-                     } else if (num < 0) {
-                         negative_count++;
-                     }
-                 }
-.|\n             ;
-
-%%
-
+int yywrap() {}
 int main() {
+    char input[1024];
+    printf("Enter numbers: ");
+    fgets(input, sizeof(input), stdin);
+    yy_scan_string(input);
     yylex();
-    printf("Positive numbers count: %d\n", positive_count);
-    printf("Negative numbers count: %d\n", negative_count);
+    printf("Number of positive numbers: %d\n", positive_count);
+    printf("Number of negative numbers: %d\n", negative_count);
     return 0;
 }
