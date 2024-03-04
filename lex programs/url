@@ -1,18 +1,18 @@
-%{
-#include <stdio.h>
-#include <string.h>
+%{ 
 %}
-
 %%
-^https?://[-a-zA-Z0-9]+(\.[-a-zA-Z0-9]+)(\.[a-zA-Z]{2,})?(:\d+)?(/[^?#])?(\?[^#])?(#.)?$ {
-    printf("Valid URL: %s\n", yytext);
-}
-.|\n ;
+[http://]+[www.]+[a-z]+".com" (printf("\n valid url\n");}
+
+.+printf("\n invalid url\n");}
 
 %%
 
-int main() {
-    printf("Enter a URL: ");
-    yylex();
-    return 0;
+int yywrap() {}
+
+int main()
+
+{ printf("\n enter the url:");
+
+yylex();
+
 }
